@@ -18,7 +18,7 @@ Sometimes we want to give UI/Frontend the developers the ability to easily test 
 - Allow helper methods to be easily stubbed to return custom values
 
 
-## Getting Stated
+## Getting Started
 
 add
 
