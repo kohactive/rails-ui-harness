@@ -30,7 +30,7 @@ to your Gemfile.
 
 ### Create a test controller
 
-```
+```ruby
 class TestController < ActionController::Base
 
   include RailsUiHarness::HarnessHelper
@@ -47,7 +47,7 @@ end
 
 ### Add a route
 
-```
+```ruby
 	get '/test_harness' => "test#test"
 
 ```
