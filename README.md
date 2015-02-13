@@ -1,4 +1,4 @@
-#Rails-Ui-Harness
+# Rails-Ui-Harness
 ---
 
 ## Problem
@@ -38,9 +38,9 @@ class TestController < ActionController::Base
   stub_method :testing_stub, "Hello world" # < Stub a helper method
 
   def test
-    @order = RailsUiHarness::Harness.new < Create a Harness / Proxy object
-    @order.number = "R101010101" < Set a property on the instance object
-    render "orders/show"
+    @order = RailsUiHarness::Harness.new # < Create a Harness / Proxy object
+    @order.number = "R101010101" # < Set a property on the instance object
+    render "orders/show" # < Render the view you are testing
   end
 end
 ```
