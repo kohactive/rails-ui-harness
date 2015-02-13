@@ -1,31 +1,53 @@
-# Rails::Ui::Harness
+#Rails-Ui-Harness
+---
 
-TODO: Write a gem description
+## Problem
 
-## Installation
+Sometimes we want to give UI/Frontend the developers the ability to easily test and develop Views that have already been "wired up". Often "wired up" views have specific requirements, in terms of application state, that must be met in order to test parts of a view that are being developed.
 
-Add this line to your application's Gemfile:
+> e.g. A user having a specific flag set, or payments exisiting on an order
 
-```ruby
-gem 'rails-ui-harness'
+
+## Goals
+
+- Allow the easy rendering of views in a rails project via a generic test controller. 
+- Facilitate setting very specific application state / conditions.
+- Require little controller setup and no knowledge of application state
+- Provide easy fallbacks for instance variable properties and helper methods
+- Allow instance variable properties to be set to custom values
+- Allow helper methods to be easily stubbed to return custom values
+
+
+## Getting Stated
+
+add
+
+```
+gem rails-ui-harness, github: "kohactive/rails-ui-harness"
 ```
 
-And then execute:
+to your Gemfile.
 
-    $ bundle
+### Create a test controller
 
-Or install it yourself as:
+```
+class TestController < ActionController::Base
 
-    $ gem install rails-ui-harness
+  include RailsUiHarness::HarnessHelper
 
-## Usage
+  stub_method :testing_stub, "Hello world" # < Stub a helper method
 
-TODO: Write usage instructions here
+  def test
+    @order = RailsUiHarness::Harness.new < Create a Harness / Proxy object
+    @order.number = "R101010101" < Set a property on the instance object
+    render "orders/show"
+  end
+end
+```
 
-## Contributing
+### Add a route
 
-1. Fork it ( https://github.com/[my-github-username]/rails-ui-harness/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+```
+	get '/test_harness' => "test#test"
+
+```
